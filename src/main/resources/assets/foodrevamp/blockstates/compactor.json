@@ -1,0 +1,9 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "facing=north": { "model": "foodrevamp:compactor" },
+        "facing=south": { "model": "foodrevamp:compactor", "y": 180 },
+        "facing=west":  { "model": "foodrevamp:compactor", "y": 270 },
+        "facing=east":  { "model": "foodrevamp:compactor", "y": 90 }
+    }
+}
