@@ -4,14 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
-import com.blogspot.jabelarminecraft.foodrevamp.items.ItemCowHide;
-import com.blogspot.jabelarminecraft.foodrevamp.items.ItemHorseHide;
-import com.blogspot.jabelarminecraft.foodrevamp.items.ItemPigSkin;
-import com.blogspot.jabelarminecraft.foodrevamp.items.ItemSheepSkin;
-import com.blogspot.jabelarminecraft.foodrevamp.items.ItemSwordExtended;
+import com.blogspot.jabelarminecraft.foodrevamp.items.ItemMeat;
+import com.blogspot.jabelarminecraft.foodrevamp.items.ItemMeatCooked;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -29,11 +25,8 @@ public class ItemRegistry {
 //	}
 
     // instantiate items
-	public final static ItemCowHide COW_HIDE = new ItemCowHide();
-	public final static ItemSheepSkin SHEEP_SKIN = new ItemSheepSkin();
-	public final static ItemPigSkin PIG_SKIN = new ItemPigSkin();
-	public final static ItemHorseHide HORSE_HIDE = new ItemHorseHide();
-	public final static ItemSwordExtended SWORD_EXTENDED = new ItemSwordExtended(ToolMaterial.IRON);
+	public final static ItemMeat MEAT = new ItemMeat();
+	public final static ItemMeatCooked MEAT_COOKED = new ItemMeatCooked();
 
 	/**
 	 * Initialize this mod's {@link Item}s with any post-registration data.
@@ -55,13 +48,7 @@ public class ItemRegistry {
 		@SubscribeEvent
 		public static void onEvent(final RegistryEvent.Register<Item> event) 
 		{
-			final Item[] arrayItems = {
-					COW_HIDE,
-					SHEEP_SKIN,
-					PIG_SKIN,
-					HORSE_HIDE,
-					SWORD_EXTENDED
-			};
+			final Item[] arrayItems = {MEAT, MEAT_COOKED};
 
 			final IForgeRegistry<Item> registry = event.getRegistry();
 

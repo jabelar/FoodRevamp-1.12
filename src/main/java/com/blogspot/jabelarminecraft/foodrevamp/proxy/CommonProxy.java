@@ -27,16 +27,12 @@ import com.blogspot.jabelarminecraft.foodrevamp.EventHandler;
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
 import com.blogspot.jabelarminecraft.foodrevamp.OreGenEventHandler;
 import com.blogspot.jabelarminecraft.foodrevamp.TerrainGenEventHandler;
-import com.blogspot.jabelarminecraft.foodrevamp.commands.CommandStructureCapture;
-import com.blogspot.jabelarminecraft.foodrevamp.entities.EntityPigTest;
 import com.blogspot.jabelarminecraft.foodrevamp.gui.GuiHandler;
-import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageExtendedReachAttack;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageRequestItemStackRegistryFromClient;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageSendItemStackRegistryToServer;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageSyncEntityToClient;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageToClient;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageToServer;
-import com.blogspot.jabelarminecraft.foodrevamp.tileentities.TileEntityCompactor;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLiving;
@@ -60,7 +56,6 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class CommonProxy 
@@ -145,7 +140,7 @@ public class CommonProxy
     public void fmlLifeCycleEvent(FMLServerStartingEvent event) 
     {
         // // register server commands
-        event.registerServerCommand(new CommandStructureCapture());
+//        event.registerServerCommand(new CommandStructureCapture());
     }
         
     /*
@@ -166,7 +161,6 @@ public class CommonProxy
         // register messages from server to client
         MainMod.network.registerMessage(MessageToClient.Handler.class, MessageToClient.class, packetId++, Side.CLIENT);
         MainMod.network.registerMessage(MessageSyncEntityToClient.Handler.class, MessageSyncEntityToClient.class, packetId++, Side.CLIENT);
-        MainMod.network.registerMessage(MessageExtendedReachAttack.Handler.class, MessageExtendedReachAttack.class, packetId++, Side.SERVER);
         MainMod.network.registerMessage(MessageSendItemStackRegistryToServer.Handler.class, MessageSendItemStackRegistryToServer.class, packetId++, Side.SERVER);
         MainMod.network.registerMessage(MessageRequestItemStackRegistryFromClient.Handler.class, MessageRequestItemStackRegistryFromClient.class, packetId++, Side.CLIENT);
     }
@@ -243,7 +237,7 @@ public class CommonProxy
     {
         // DEBUG
         System.out.println("Registering tile entities");
-        GameRegistry.registerTileEntity(TileEntityCompactor.class, "tileEntityCompactor");               
+//        GameRegistry.registerTileEntity(TileEntityCompactor.class, "tileEntityCompactor");               
    }
 
     /**
@@ -322,7 +316,7 @@ public class CommonProxy
         // or without spawn egg use
 
         // example: registerModEntity(EntityGoldenGoose.class, "golden_goose");
-        registerModEntityWithEgg(EntityPigTest.class, "test_pig", 0xE18519, 0x000000);
+//        registerModEntityWithEgg(EntityPigTest.class, "test_pig", 0xE18519, 0x000000);
     }
  
     /**

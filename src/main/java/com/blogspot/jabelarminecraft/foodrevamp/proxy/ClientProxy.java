@@ -26,21 +26,17 @@ import org.lwjgl.util.glu.Sphere;
 
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
 import com.blogspot.jabelarminecraft.foodrevamp.VersionChecker;
-import com.blogspot.jabelarminecraft.foodrevamp.entities.EntityPigTest;
-import com.blogspot.jabelarminecraft.foodrevamp.registries.BlockRegistry;
 import com.blogspot.jabelarminecraft.foodrevamp.registries.ItemRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderPig;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -143,7 +139,7 @@ public class ClientProxy extends CommonProxy
       
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
         // RenderingRegistry.registerEntityRenderingHandler(EntityGoldenGoose.class, new RenderGoldenGoose(renderManager, new ModelGoldenGoose(), 0.5F)); // 0.5F is shadow size 
-    	RenderingRegistry.registerEntityRenderingHandler(EntityPigTest.class, new RenderPig(renderManager));
+//    	RenderingRegistry.registerEntityRenderingHandler(EntityPigTest.class, new RenderPig(renderManager));
     }
     
     public void registerItemRenderers()
@@ -151,12 +147,8 @@ public class ClientProxy extends CommonProxy
         // DEBUG
         System.out.println("Registering item renderers");
         
-        registerItemRenderer(ItemRegistry.COW_HIDE);
-        registerItemRenderer(ItemRegistry.SHEEP_SKIN);
-        registerItemRenderer(ItemRegistry.PIG_SKIN);
-        registerItemRenderer(ItemRegistry.HORSE_HIDE);
-        registerItemRenderer(ItemRegistry.SWORD_EXTENDED);
-        // registerItemRenderer(JnaeMod.magicBeans);
+        registerItemRenderer(ItemRegistry.MEAT);
+        registerItemRenderer(ItemRegistry.MEAT_COOKED);
     }
     
     public void registerItemRenderer(Item parItem)
@@ -173,7 +165,7 @@ public class ClientProxy extends CommonProxy
         
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
         
-        renderItem.getItemModelMesher().register(Item.getItemFromBlock(BlockRegistry.COMPACTOR), 0, new ModelResourceLocation(MainMod.MODID + ":" + BlockRegistry.COMPACTOR.getUnlocalizedName().substring(5), "inventory"));
+//        renderItem.getItemModelMesher().register(Item.getItemFromBlock(BlockRegistry.COMPACTOR), 0, new ModelResourceLocation(MainMod.MODID + ":" + BlockRegistry.COMPACTOR.getUnlocalizedName().substring(5), "inventory"));
     }
     
     /*     

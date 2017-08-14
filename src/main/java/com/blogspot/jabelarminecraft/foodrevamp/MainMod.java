@@ -21,7 +21,6 @@ package com.blogspot.jabelarminecraft.foodrevamp;
 
 import java.io.File;
 
-import com.blogspot.jabelarminecraft.foodrevamp.creativetabs.CustomCreativeTab;
 import com.blogspot.jabelarminecraft.foodrevamp.proxy.CommonProxy;
 
 import net.minecraft.advancements.Advancement;
@@ -75,7 +74,7 @@ public class MainMod
     public static boolean allowPartialDeconstructing = true;
     
     // instantiate creative tabs
-	public static final CustomCreativeTab CREATIVE_TAB = new CustomCreativeTab();
+	// public static final CustomCreativeTab CREATIVE_TAB = new CustomCreativeTab();
 
     // instantiate materials
     // public final static MaterialTanningRack materialTanningRack = new MaterialTanningRack();

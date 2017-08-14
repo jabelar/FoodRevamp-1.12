@@ -19,28 +19,11 @@
 
 package com.blogspot.jabelarminecraft.foodrevamp;
 
-import com.blogspot.jabelarminecraft.foodrevamp.gui.GuiCompactor;
-import com.blogspot.jabelarminecraft.foodrevamp.items.IExtendedReach;
-import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageExtendedReachAttack;
-import com.blogspot.jabelarminecraft.foodrevamp.registries.ItemRegistry;
-import com.blogspot.jabelarminecraft.foodrevamp.utilities.Utilities;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.NameFormat;
@@ -196,41 +179,41 @@ public class EventHandler
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
     public void onEvent(LivingDropsEvent event)
     {
-		for (EntityItem dropItem: event.getDrops())
-		{
-			if (dropItem.getItem().getItem() == Items.LEATHER)
-			{
-				int stackSize = dropItem.getItem().getCount();
-
-				if (event.getEntityLiving() instanceof EntityCow)
-				{
-					dropItem.setItem(new ItemStack(ItemRegistry.COW_HIDE, stackSize));
-				}
-				if (event.getEntityLiving() instanceof EntityHorse)
-				{
-					dropItem.setItem(new ItemStack(ItemRegistry.HORSE_HIDE, stackSize));
-				}
-				if (event.getEntityLiving() instanceof EntityMooshroom)
-				{
-					dropItem.setItem(new ItemStack(ItemRegistry.COW_HIDE, stackSize));
-				}
-			}
-    	}
-    	
-		if (event.getEntityLiving() instanceof EntityPig)
-		{
-			event.getDrops().add(new EntityItem(
-			        event.getEntityLiving().world, 
-			        event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, 
-					new ItemStack(ItemRegistry.PIG_SKIN)));
-		}
-		else if (event.getEntityLiving() instanceof EntitySheep)
-		{
-			event.getDrops().add(new EntityItem(
-			        event.getEntityLiving().world, 
-			        event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, 
-					new ItemStack(ItemRegistry.SHEEP_SKIN)));
-		}
+//		for (EntityItem dropItem: event.getDrops())
+//		{
+//			if (dropItem.getItem().getItem() == Items.LEATHER)
+//			{
+//				int stackSize = dropItem.getItem().getCount();
+//
+//				if (event.getEntityLiving() instanceof EntityCow)
+//				{
+//					dropItem.setItem(new ItemStack(ItemRegistry.COW_HIDE, stackSize));
+//				}
+//				if (event.getEntityLiving() instanceof EntityHorse)
+//				{
+//					dropItem.setItem(new ItemStack(ItemRegistry.HORSE_HIDE, stackSize));
+//				}
+//				if (event.getEntityLiving() instanceof EntityMooshroom)
+//				{
+//					dropItem.setItem(new ItemStack(ItemRegistry.COW_HIDE, stackSize));
+//				}
+//			}
+//    	}
+//    	
+//		if (event.getEntityLiving() instanceof EntityPig)
+//		{
+//			event.getDrops().add(new EntityItem(
+//			        event.getEntityLiving().world, 
+//			        event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, 
+//					new ItemStack(ItemRegistry.PIG_SKIN)));
+//		}
+//		else if (event.getEntityLiving() instanceof EntitySheep)
+//		{
+//			event.getDrops().add(new EntityItem(
+//			        event.getEntityLiving().world, 
+//			        event.getEntityLiving().posX, event.getEntityLiving().posY, event.getEntityLiving().posZ, 
+//					new ItemStack(ItemRegistry.SHEEP_SKIN)));
+//		}
     }
     
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
@@ -614,11 +597,6 @@ public class EventHandler
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
     public void onEvent(GuiOpenEvent event)
     { 
-    	if (event.getGui() instanceof GuiCompactor)
-    	{
-    		// DEBUG
-    		System.out.println("GuiOpenEvent for GuiCompactor");
-    	}
 //        if (event.getGui() instanceof GuiIngameMenu)
 //        {
 //            System.out.println("GuiOpenEvent for GuiIngameModOptions");
@@ -646,51 +624,51 @@ public class EventHandler
 //    {
 //        
 //    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(MouseEvent event)
-    { 
-        if (event.getButton() == 0 && event.isButtonstate())
-        {
-            Minecraft mc = Minecraft.getMinecraft();
-            EntityPlayer thePlayer = mc.player;
-            if (thePlayer != null)
-            {
-                ItemStack itemstack = thePlayer.getHeldItemMainhand();
-                IExtendedReach ieri;
-                if (itemstack != null)
-                {
-                    if (itemstack.getItem() instanceof IExtendedReach)
-                    {
-                        ieri = (IExtendedReach) itemstack.getItem();
-                    } else
-                    {
-                        ieri = null;
-                    }
-    
-                    if (ieri != null)
-                    {
-                        float reach = ieri.getReach();
-                        RayTraceResult mov = Utilities.getMouseOverExtended(reach); 
-                        
-                        if (mov != null)
-                        {
-                            if (mov.entityHit != null && mov.entityHit.hurtResistantTime == 0)
-                            {
-                                if (mov.entityHit != thePlayer )
-                                {
-                                    MainMod.network.sendToServer(new MessageExtendedReachAttack(mov.entityHit.getEntityId()));
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-   }
-
+//
+//    @SideOnly(Side.CLIENT)
+//    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+//    public void onEvent(MouseEvent event)
+//    { 
+//        if (event.getButton() == 0 && event.isButtonstate())
+//        {
+//            Minecraft mc = Minecraft.getMinecraft();
+//            EntityPlayer thePlayer = mc.player;
+//            if (thePlayer != null)
+//            {
+//                ItemStack itemstack = thePlayer.getHeldItemMainhand();
+//                IExtendedReach ieri;
+//                if (itemstack != null)
+//                {
+//                    if (itemstack.getItem() instanceof IExtendedReach)
+//                    {
+//                        ieri = (IExtendedReach) itemstack.getItem();
+//                    } else
+//                    {
+//                        ieri = null;
+//                    }
 //    
+//                    if (ieri != null)
+//                    {
+//                        float reach = ieri.getReach();
+//                        RayTraceResult mov = Utilities.getMouseOverExtended(reach); 
+//                        
+//                        if (mov != null)
+//                        {
+//                            if (mov.entityHit != null && mov.entityHit.hurtResistantTime == 0)
+//                            {
+//                                if (mov.entityHit != thePlayer )
+//                                {
+//                                    MainMod.network.sendToServer(new MessageExtendedReachAttack(mov.entityHit.getEntityId()));
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//   }
+//
+////    
 //    @SideOnly(Side.CLIENT)
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
 //    public void onEvent(RenderGameOverlayEvent event)

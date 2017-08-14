@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
-import com.blogspot.jabelarminecraft.foodrevamp.blocks.BlockCompactor;
 import com.google.common.base.Preconditions;
 
 import net.minecraft.block.Block;
@@ -28,7 +27,7 @@ public class BlockRegistry {
 //	}
 
     // instantiate blocks
-	public final static BlockCompactor COMPACTOR = new BlockCompactor();
+//	public final static BlockCompactor COMPACTOR = new BlockCompactor();
 
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
@@ -52,7 +51,7 @@ public class BlockRegistry {
 		public static void onEvent(final RegistryEvent.Register<Block> event) 
 		{
 			final Block[] arrayBlocks = {
-					COMPACTOR
+					// no blocks yet to register
 			};
 
 			final IForgeRegistry<Block> registry = event.getRegistry();
@@ -76,7 +75,7 @@ public class BlockRegistry {
 		public static void registerItemBlocks(final RegistryEvent.Register<Item> event) 
 		{
 			final ItemBlock[] items = {
-					new ItemBlock(COMPACTOR)
+					// no block to register for now
 			};
 
 			final IForgeRegistry<Item> registry = event.getRegistry();
