@@ -149,6 +149,8 @@ public class ClientProxy extends CommonProxy
         
         registerItemRenderer(ItemRegistry.MEAT);
         registerItemRenderer(ItemRegistry.MEAT_COOKED);
+        registerItemRenderer(ItemRegistry.ROOT);
+        registerItemRenderer(ItemRegistry.ROOT_BAKED);
     }
     
     public void registerItemRenderer(Item parItem)

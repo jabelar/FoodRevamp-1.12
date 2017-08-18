@@ -1,6 +1,8 @@
 
 item.meat_raw.name=Raw Meat
 item.meat_cooked.name=Cooked Meat
+item.root_raw.name=Raw Root
+item.root_baked.name=Baked Root
 
 itemGroup.foodrevamp=Food Revamp
 
