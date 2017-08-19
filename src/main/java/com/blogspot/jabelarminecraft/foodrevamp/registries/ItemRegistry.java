@@ -9,7 +9,9 @@ import com.blogspot.jabelarminecraft.foodrevamp.items.ItemMeatCooked;
 import com.blogspot.jabelarminecraft.foodrevamp.items.ItemRoot;
 import com.blogspot.jabelarminecraft.foodrevamp.items.ItemRootBaked;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -64,10 +66,33 @@ public class ItemRegistry {
 				// DEBUG
 				System.out.println("Registering item: "+item.getRegistryName());
 			}
+			
+			registerItemModels();
 
 			initialize();
 		}
 	}
+	
+    public static void registerItemModels()
+    {
+        // DEBUG
+        System.out.println("Registering item renderers");
+        
+        registerItemModel(ItemRegistry.MEAT);
+        registerItemModel(ItemRegistry.MEAT_COOKED);
+        registerItemModel(ItemRegistry.ROOT);
+        registerItemModel(ItemRegistry.ROOT_BAKED);
+    }
+    
+    public static void registerItemModel(Item parItem)
+    {
+    	registerItemModel(parItem, 0);
+    }
+    
+    public static void registerItemModel(Item parItem, int parMetaData)
+    {
+        ModelLoader.setCustomModelResourceLocation(parItem, parMetaData, new ModelResourceLocation(MainMod.MODID + ":" + parItem.getUnlocalizedName().substring(5), "inventory"));
+    }
 
 	//	public static class ArmorMaterials {
 	//		public static final ItemArmor.ArmorMaterial ARMOUR_MATERIAL_REPLACEMENT = EnumHelper.addArmorMaterial(Constants.RESOURCE_PREFIX + "replacement", Constants.RESOURCE_PREFIX + "replacement", 15, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_CHAIN, (float) 0);

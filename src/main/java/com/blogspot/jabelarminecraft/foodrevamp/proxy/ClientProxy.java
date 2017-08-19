@@ -26,15 +26,11 @@ import org.lwjgl.util.glu.Sphere;
 
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
 import com.blogspot.jabelarminecraft.foodrevamp.VersionChecker;
-import com.blogspot.jabelarminecraft.foodrevamp.registries.ItemRegistry;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -91,8 +87,6 @@ public class ClientProxy extends CommonProxy
 
         // register renderers
         registerEntityRenderers();
-        registerItemRenderers();
-        registerBlockRenderers();
     }
     
     @Override
@@ -139,37 +133,9 @@ public class ClientProxy extends CommonProxy
       
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
         // RenderingRegistry.registerEntityRenderingHandler(EntityGoldenGoose.class, new RenderGoldenGoose(renderManager, new ModelGoldenGoose(), 0.5F)); // 0.5F is shadow size 
-//    	RenderingRegistry.registerEntityRenderingHandler(EntityPigTest.class, new RenderPig(renderManager));
     }
     
-    public void registerItemRenderers()
-    {
-        // DEBUG
-        System.out.println("Registering item renderers");
-        
-        registerItemRenderer(ItemRegistry.MEAT);
-        registerItemRenderer(ItemRegistry.MEAT_COOKED);
-        registerItemRenderer(ItemRegistry.ROOT);
-        registerItemRenderer(ItemRegistry.ROOT_BAKED);
-    }
-    
-    public void registerItemRenderer(Item parItem)
-    {
-        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-
-        renderItem.getItemModelMesher().register(parItem, 0, new ModelResourceLocation(MainMod.MODID + ":" + parItem.getUnlocalizedName().substring(5), "inventory"));
-    }
-    
-    public void registerBlockRenderers()
-    {
-        // DEBUG
-        System.out.println("Registering block renderers");
-        
-        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        
-//        renderItem.getItemModelMesher().register(Item.getItemFromBlock(BlockRegistry.COMPACTOR), 0, new ModelResourceLocation(MainMod.MODID + ":" + BlockRegistry.COMPACTOR.getUnlocalizedName().substring(5), "inventory"));
-    }
-    
+     
     /*     
      * Thanks to CoolAlias for this tip!
      */
