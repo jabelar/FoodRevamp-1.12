@@ -11,6 +11,8 @@ import com.blogspot.jabelarminecraft.foodrevamp.items.ItemRootBaked;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +41,11 @@ public class ItemRegistry {
 	 */
 	private static void initialize() 
 	{
+		FurnaceRecipes.instance().addSmeltingRecipe(
+				new ItemStack(ItemRegistry.MEAT), 
+				new ItemStack(ItemRegistry.MEAT_COOKED), 
+				0.35F
+				);
 	}
 
 	@Mod.EventBusSubscriber(modid = MainMod.MODID)
