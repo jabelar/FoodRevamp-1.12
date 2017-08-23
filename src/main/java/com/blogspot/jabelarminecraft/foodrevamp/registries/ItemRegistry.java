@@ -42,8 +42,8 @@ public class ItemRegistry {
 	private static void initialize() 
 	{
 		FurnaceRecipes.instance().addSmeltingRecipe(
-				new ItemStack(ItemRegistry.MEAT), 
-				new ItemStack(ItemRegistry.MEAT_COOKED), 
+				new ItemStack(MEAT), 
+				new ItemStack(MEAT_COOKED), 
 				0.35F
 				);
 	}
