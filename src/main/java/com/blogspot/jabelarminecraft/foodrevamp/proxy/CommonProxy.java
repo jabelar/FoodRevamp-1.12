@@ -27,6 +27,7 @@ import com.blogspot.jabelarminecraft.foodrevamp.EventHandler;
 import com.blogspot.jabelarminecraft.foodrevamp.MainMod;
 import com.blogspot.jabelarminecraft.foodrevamp.OreGenEventHandler;
 import com.blogspot.jabelarminecraft.foodrevamp.TerrainGenEventHandler;
+import com.blogspot.jabelarminecraft.foodrevamp.commands.CommandSetHunger;
 import com.blogspot.jabelarminecraft.foodrevamp.gui.GuiHandler;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageRequestItemStackRegistryFromClient;
 import com.blogspot.jabelarminecraft.foodrevamp.networking.MessageSendItemStackRegistryToServer;
@@ -139,8 +140,8 @@ public class CommonProxy
 
     public void fmlLifeCycleEvent(FMLServerStartingEvent event) 
     {
-        // // register server commands
-//        event.registerServerCommand(new CommandStructureCapture());
+    	// register server commands
+        event.registerServerCommand(new CommandSetHunger());
     }
         
     /*
