@@ -46,6 +46,11 @@ public class ItemRegistry {
 				new ItemStack(MEAT_COOKED), 
 				0.35F
 				);
+		FurnaceRecipes.instance().addSmeltingRecipe(
+				new ItemStack(ROOT), 
+				new ItemStack(ROOT_BAKED), 
+				0.35F
+				);
 	}
 
 	@Mod.EventBusSubscriber(modid = MainMod.MODID)
