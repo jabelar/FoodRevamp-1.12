@@ -28,6 +28,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -194,18 +195,29 @@ public class EventHandler
     	if (theEntity instanceof EntityCow)
     	{
     		theDrops.clear();
+    		Item itemToDrop = ItemRegistry.MEAT;
+    		if (theEntity.isBurning())
+    		{
+    			itemToDrop = ItemRegistry.MEAT_COOKED;
+    		}
+
+    		int numToDrop = 2 + event.getLootingLevel()*2;
+        		
     		theDrops.add(new EntityItem(
     				theEntity.world, 
     				theEntity.posX,
     				theEntity.posY,
     				theEntity.posZ,
-    				new ItemStack(ItemRegistry.MEAT, 2)));
+    				new ItemStack(itemToDrop, numToDrop)));
+    		
+    		numToDrop = 1 + event.getLootingLevel();
     		theDrops.add(new EntityItem(
     				theEntity.world, 
     				theEntity.posX,
+    				
     				theEntity.posY,
     				theEntity.posZ,
-    				new ItemStack(Items.LEATHER, 1)));
+    				new ItemStack(Items.LEATHER, numToDrop)));
     	}
 //		for (EntityItem dropItem: event.getDrops())
 //		{
