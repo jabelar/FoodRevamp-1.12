@@ -19,7 +19,16 @@
 
 package com.blogspot.jabelarminecraft.foodrevamp;
 
+import java.util.List;
+
+import com.blogspot.jabelarminecraft.foodrevamp.registries.ItemRegistry;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.event.ClickEvent;
@@ -179,6 +188,25 @@ public class EventHandler
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
     public void onEvent(LivingDropsEvent event)
     {
+    	EntityLivingBase theEntity = event.getEntityLiving();
+    	List<EntityItem> theDrops = event.getDrops();
+    	
+    	if (theEntity instanceof EntityCow)
+    	{
+    		theDrops.clear();
+    		theDrops.add(new EntityItem(
+    				theEntity.world, 
+    				theEntity.posX,
+    				theEntity.posY,
+    				theEntity.posZ,
+    				new ItemStack(ItemRegistry.MEAT, 2)));
+    		theDrops.add(new EntityItem(
+    				theEntity.world, 
+    				theEntity.posX,
+    				theEntity.posY,
+    				theEntity.posZ,
+    				new ItemStack(Items.LEATHER, 1)));
+    	}
 //		for (EntityItem dropItem: event.getDrops())
 //		{
 //			if (dropItem.getItem().getItem() == Items.LEATHER)
