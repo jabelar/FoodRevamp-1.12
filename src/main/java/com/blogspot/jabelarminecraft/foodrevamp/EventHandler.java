@@ -25,7 +25,9 @@ import com.blogspot.jabelarminecraft.foodrevamp.registries.ItemRegistry;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -218,6 +220,51 @@ public class EventHandler
     				theEntity.posY,
     				theEntity.posZ,
     				new ItemStack(Items.LEATHER, numToDrop)));
+    	}
+    		if (theEntity instanceof EntityChicken)
+        	{
+        		theDrops.clear();
+        		Item itemToDrop = ItemRegistry.MEAT;
+        		if (theEntity.isBurning())
+        		{
+        			itemToDrop = ItemRegistry.MEAT_COOKED;
+        		}
+
+        		int numToDrop1 = 1 + event.getLootingLevel()*2;
+            		
+        		theDrops.add(new EntityItem(
+        				theEntity.world, 
+        				theEntity.posX,
+        				theEntity.posY,
+        				theEntity.posZ,
+        				new ItemStack(itemToDrop, numToDrop1)));
+        		
+        		numToDrop1 = 1 + event.getLootingLevel();
+        		theDrops.add(new EntityItem(
+        				theEntity.world, 
+        				theEntity.posX,
+        				
+        				theEntity.posY,
+        				theEntity.posZ,
+        				new ItemStack(Items.FEATHER, numToDrop1)));
+    	}
+    		if (theEntity instanceof EntityPig)
+        	{
+        		theDrops.clear();
+        		Item itemToDrop = ItemRegistry.MEAT;
+        		if (theEntity.isBurning())
+        		{
+        			itemToDrop = ItemRegistry.MEAT_COOKED;
+        		}
+
+        		int numToDrop1 = 2 + event.getLootingLevel()*2;
+            		
+        		theDrops.add(new EntityItem(
+        				theEntity.world, 
+        				theEntity.posX,
+        				theEntity.posY,
+        				theEntity.posZ,
+        				new ItemStack(itemToDrop, numToDrop1)));
     	}
 //		for (EntityItem dropItem: event.getDrops())
 //		{
