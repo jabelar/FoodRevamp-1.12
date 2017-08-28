@@ -90,10 +90,10 @@ public class ItemRegistry {
         // DEBUG
         System.out.println("Registering item renderers");
         
-        registerItemModel(ItemRegistry.MEAT);
-        registerItemModel(ItemRegistry.MEAT_COOKED);
-        registerItemModel(ItemRegistry.ROOT);
-        registerItemModel(ItemRegistry.ROOT_BAKED);
+        registerItemModel(MEAT);
+        registerItemModel(MEAT_COOKED);
+        registerItemModel(ROOT);
+        registerItemModel(ROOT_BAKED);
     }
     
     public static void registerItemModel(Item parItem)

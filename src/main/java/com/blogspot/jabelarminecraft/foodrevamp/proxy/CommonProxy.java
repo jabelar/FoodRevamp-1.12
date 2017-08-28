@@ -67,7 +67,7 @@ public class CommonProxy
     /*
      * Sometimes useful to have list of all item types, including subtypes
      */
-    protected List itemStackRegistry = new ArrayList();
+    protected List<ItemStack> itemStackRegistry = new ArrayList<ItemStack>();
      
     public void fmlLifeCycleEvent(FMLPreInitializationEvent event)
     { 
