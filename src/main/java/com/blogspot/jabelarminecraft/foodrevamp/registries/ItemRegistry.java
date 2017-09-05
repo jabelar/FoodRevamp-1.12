@@ -10,7 +10,9 @@ import com.blogspot.jabelarminecraft.foodrevamp.items.ItemRoot;
 import com.blogspot.jabelarminecraft.foodrevamp.items.ItemRootBaked;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.client.model.ModelLoader;
@@ -41,6 +43,9 @@ public class ItemRegistry {
 	 */
 	private static void initialize() 
 	{
+		/*
+		 * Setup smelting recipes here
+		 */
 		FurnaceRecipes.instance().addSmeltingRecipe(
 				new ItemStack(MEAT), 
 				new ItemStack(MEAT_COOKED), 
@@ -51,6 +56,12 @@ public class ItemRegistry {
 				new ItemStack(ROOT_BAKED), 
 				0.35F
 				);
+		
+		/*
+		 * Modify vanilla items here
+		 */
+		Items.BEEF.setCreativeTab(null);
+		((ItemFood)(Items.BEEF)).setAlwaysEdible();
 	}
 
 	@Mod.EventBusSubscriber(modid = MainMod.MODID)
