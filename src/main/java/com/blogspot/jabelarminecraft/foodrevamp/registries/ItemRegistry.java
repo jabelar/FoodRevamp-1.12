@@ -61,7 +61,31 @@ public class ItemRegistry {
 		 * Modify vanilla items here
 		 */
 		Items.BEEF.setCreativeTab(null);
+		Items.COOKED_BEEF.setCreativeTab(null);
+		Items.MUTTON.setCreativeTab(null);
+		Items.COOKED_MUTTON.setCreativeTab(null);
+		Items.CHICKEN.setCreativeTab(null);
+		Items.COOKED_CHICKEN.setCreativeTab(null);
+		Items.PORKCHOP.setCreativeTab(null);
+		Items.COOKED_PORKCHOP.setCreativeTab(null);
+		Items.RABBIT.setCreativeTab(null);
+		Items.RABBIT_STEW.setCreativeTab(null);
+		Items.COOKED_RABBIT.setCreativeTab(null);
+		Items.MUSHROOM_STEW.setCreativeTab(null);
+		Items.CARROT.setCreativeTab(null);
+		Items.POTATO.setCreativeTab(null);
+		Items.BAKED_POTATO.setCreativeTab(null);
+		Items.POISONOUS_POTATO.setCreativeTab(null);
+		Items.BEETROOT.setCreativeTab(null);
+		Items.BEETROOT_SEEDS.setCreativeTab(null);
+		Items.BEETROOT_SOUP.setCreativeTab(null);
+		Items.FISH.setCreativeTab(null);
+		Items.COOKED_FISH.setCreativeTab(null);
 		((ItemFood)(Items.BEEF)).setAlwaysEdible();
+		((ItemFood)(MEAT)).setAlwaysEdible();
+		((ItemFood)(MEAT_COOKED)).setAlwaysEdible();
+		((ItemFood)(ROOT)).setAlwaysEdible();
+		((ItemFood)(ROOT_BAKED)).setAlwaysEdible();
 	}
 
 	@Mod.EventBusSubscriber(modid = MainMod.MODID)
